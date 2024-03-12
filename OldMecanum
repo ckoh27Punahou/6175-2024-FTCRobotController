@@ -30,7 +30,7 @@ public class _61752 extends LinearOpMode {
   public void runOpMode() {
     float claw;
     double denominator;
-    // TODO: Enter the type for variable named pull
+    // pull variable may be wrong type, might need to be double
     float pull;
     float close;
     float turn;
