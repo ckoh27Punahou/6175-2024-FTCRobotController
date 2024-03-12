@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.JavaUtil;
 
-@TeleOp(name = "_61752 (Blocks to Java)")
+@TeleOp(name = "CenterstageCode")
 public class _61752 extends LinearOpMode {
 
   private DcMotor frontleft;
@@ -24,7 +24,9 @@ public class _61752 extends LinearOpMode {
   private DcMotor arm4;
 
   /**
-   * This function is executed when this OpMode is selected from the Driver Station.
+   * This function is executed when this OpMode is selected from the Driver Station. 
+   * OpMode also has to be initialized for this to run. Used for naming variables and setting up names.
+   * Used for adding telemetry starting points as well. 
    */
   @Override
   public void runOpMode() {
