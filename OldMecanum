@@ -1,0 +1,104 @@
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.util.ElapsedTime;
+import org.firstinspires.ftc.robotcore.external.JavaUtil;
+
+@TeleOp(name = "_61752 (Blocks to Java)")
+public class _61752 extends LinearOpMode {
+
+  private DcMotor frontleft;
+  private DcMotor backleft;
+  private DcMotor frontright;
+  private DcMotor backright;
+  private DcMotor arm1;
+  private DcMotor arm2;
+  private CRServo claw1;
+  private CRServo launch;
+  private CRServo claw2;
+  private DcMotor arm3;
+  private DcMotor arm4;
+
+  /**
+   * This function is executed when this OpMode is selected from the Driver Station.
+   */
+  @Override
+  public void runOpMode() {
+    float claw;
+    double denominator;
+    // TODO: Enter the type for variable named pull
+    UNKNOWN_TYPE pull;
+    float close;
+    float turn;
+    float forward;
+    float strafe;
+    float arm_up;
+    ElapsedTime myElapsedTime;
+
+    frontleft = hardwareMap.get(DcMotor.class, "front left");
+    backleft = hardwareMap.get(DcMotor.class, "back left");
+    frontright = hardwareMap.get(DcMotor.class, "front right");
+    backright = hardwareMap.get(DcMotor.class, "back right");
+    arm1 = hardwareMap.get(DcMotor.class, "arm 1");
+    arm2 = hardwareMap.get(DcMotor.class, "arm 2");
+    claw1 = hardwareMap.get(CRServo.class, "claw 1");
+    launch = hardwareMap.get(CRServo.class, "launch");
+    claw2 = hardwareMap.get(CRServo.class, "claw 2");
+    arm3 = hardwareMap.get(DcMotor.class, "arm 3");
+    arm4 = hardwareMap.get(DcMotor.class, "arm4");
+
+    frontleft.setDirection(DcMotorSimple.Direction.REVERSE);
+    backleft.setDirection(DcMotorSimple.Direction.REVERSE);
+    waitForStart();
+    pull = 0;
+    if (opModeIsActive()) {
+      while (opModeIsActive()) {
+        arm_up = gamepad2.right_stick_y;
+        close = gamepad2.left_trigger;
+        claw = gamepad2.right_trigger;
+        forward = -gamepad1.left_stick_y;
+        strafe = gamepad1.left_stick_x;
+        turn = gamepad1.right_stick_x;
+        if (gamepad1.left_bumper) {
+          forward = (float) (forward / 3.5);
+          strafe = (float) (strafe / 3.5);
+          turn = (float) (turn / 3.5);
+        }
+        denominator = JavaUtil.maxOfList(JavaUtil.createListWith(JavaUtil.sumOfList(JavaUtil.createListWith(Math.abs(forward), Math.abs(strafe), Math.abs(turn))), 1));
+        frontleft.setPower((forward + strafe + turn) / denominator);
+        backleft.setPower((forward - (strafe - turn)) / denominator);
+        frontright.setPower((forward - (strafe + turn)) / denominator);
+        backright.setPower((forward + (strafe - turn)) / denominator);
+        arm_up = gamepad2.right_stick_y;
+        arm1.setPower(arm_up);
+        arm2.setPower(arm_up * -1);
+        if (claw) {
+          claw1.setPower(1);
+        }
+        if (close) {
+          claw1.setPower(-1);
+        }
+        if (gamepad2.y) {
+          while (opModeIsActive()) {
+            if (myElapsedTime.milliseconds() < 5000) {
+              arm1.setPower(0.5);
+              arm2.setPower(-0.5);
+            } else {
+              arm1.setPower(0);
+              arm2.setPower(0);
+              myElapsedTime.reset();
+            }
+          }
+        }
+        if (gamepad2.b) {
+          launch.setPower(1);
+        }
+        telemetry.update();
+      }
+    }
+  }
+}
