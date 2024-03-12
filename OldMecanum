@@ -31,7 +31,7 @@ public class _61752 extends LinearOpMode {
     float claw;
     double denominator;
     // TODO: Enter the type for variable named pull
-    UNKNOWN_TYPE pull;
+    float pull;
     float close;
     float turn;
     float forward;
