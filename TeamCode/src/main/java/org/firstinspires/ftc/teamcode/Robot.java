@@ -1,12 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
+import static com.sun.tools.javac.main.Option.S;
+
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.robotcore.external.JavaUtil;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 @TeleOp
@@ -19,6 +19,9 @@ public class Robot extends OpMode {
     DcMotor backRight = hardwareMap.dcMotor.get("backRight");
     DcMotor turret = hardwareMap.dcMotor.get("turret");
     DcMotor slide1 = hardwareMap.dcMotor.get("slide1");
+    DcMotor slide1Acutation = hardwareMap.dcMotor.get("slide1Actuation");
+    CRServo slide2 = hardwareMap.crservo.get("slide2");
+
 
     @Override
     public void init() {
@@ -32,6 +35,13 @@ public class Robot extends OpMode {
         frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        turret.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        slide1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     @Override
@@ -102,5 +112,7 @@ public class Robot extends OpMode {
                 slide1.setPower(0);
             }
         }
+
+
     }
 }
