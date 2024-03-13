@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @Autonomous(name = "Auto")
 public class Auto extends LinearOpMode {
@@ -16,6 +17,10 @@ public class Auto extends LinearOpMode {
   DcMotor slide1 = hardwareMap.dcMotor.get("slide1");
 
   public void runOpMode() {
+    double forward, strafe, turn;
+    forward = 0;
+    strafe = 0;
+    turn = 0;
 
     frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
     backLeft.setDirection(DcMotorSimple.Direction.REVERSE);

@@ -1,8 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-
-import static com.sun.tools.javac.main.Option.S;
-
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -17,10 +14,10 @@ public class Robot extends OpMode {
     DcMotor backLeft = hardwareMap.dcMotor.get("backLeft");
     DcMotor frontRight = hardwareMap.dcMotor.get("frontRight");
     DcMotor backRight = hardwareMap.dcMotor.get("backRight");
-    DcMotor turret = hardwareMap.dcMotor.get("turret");
+
     DcMotor slide1 = hardwareMap.dcMotor.get("slide1");
-    DcMotor slide1Acutation = hardwareMap.dcMotor.get("slide1Actuation");
     CRServo slide2 = hardwareMap.crservo.get("slide2");
+    CRServo turret = hardwareMap.crservo.get("turret");
 
 
     @Override
@@ -30,7 +27,6 @@ public class Robot extends OpMode {
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         slide1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        turret.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -40,7 +36,7 @@ public class Robot extends OpMode {
         backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        turret.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         slide1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
@@ -80,36 +76,62 @@ public class Robot extends OpMode {
 
         //Turret
 
-        double turretRotation = gamepad2.right_stick_x;
+        double turretRotation = gamepad2.left_stick_x;
         if (gamepad2.left_bumper) {
             turret.setPower(turretRotation/3);
         } else {
             turret.setPower(turretRotation);
         }
 
-        //Slides
+        //Slide on turret
 
-        double slideExtension = gamepad2.right_trigger;
-        double slideRetraction = gamepad2.left_trigger;
+        double slide1Extension = gamepad2.right_trigger;
+        double slide1Retraction = gamepad2.left_trigger;
         if (gamepad2.right_bumper) {
-            if (slideExtension > 0.05) {
+            if (slide1Extension > 0.05) {
                 slide1.setDirection(DcMotorSimple.Direction.FORWARD);
-                slide1.setPower(slideExtension/3);
-            } else if (slideRetraction > 0.05) {
+                slide1.setPower(slide1Extension/3);
+            } else if (slide1Retraction > 0.05) {
                 slide1.setDirection(DcMotorSimple.Direction.REVERSE);
-                slide1.setPower(slideRetraction/3);
+                slide1.setPower(slide1Retraction/3);
             } else {
                 slide1.setPower(0);
             }
         } else {
-            if (slideExtension>0.05) {
+            if (slide1Extension>0.05) {
                 slide1.setDirection(DcMotorSimple.Direction.FORWARD);
-                slide1.setPower(slideExtension);
-            } else if (slideRetraction>0.05) {
+                slide1.setPower(slide1Extension);
+            } else if (slide1Retraction>0.05) {
                 slide1.setDirection(DcMotorSimple.Direction.REVERSE);
-                slide1.setPower(slideRetraction);
+                slide1.setPower(slide1Retraction);
             } else {
                 slide1.setPower(0);
+            }
+        }
+
+        //Vertical Slide
+
+        double slide2Extension = gamepad1.right_trigger;
+        double slide2Retraction = gamepad1.left_trigger;
+        if (gamepad1.right_bumper) {
+            if (slide2Extension > 0.05) {
+                slide2.setDirection(DcMotorSimple.Direction.FORWARD);
+                slide2.setPower(slide2Extension/3);
+            } else if (slide2Retraction > 0.05) {
+                slide2.setDirection(DcMotorSimple.Direction.REVERSE);
+                slide2.setPower(slide2Retraction/3);
+            } else {
+                slide2.setPower(0);
+            }
+        } else {
+            if (slide2Extension>0.05) {
+                slide2.setDirection(DcMotorSimple.Direction.FORWARD);
+                slide2.setPower(slide2Extension);
+            } else if (slide2Retraction>0.05) {
+                slide2.setDirection(DcMotorSimple.Direction.REVERSE);
+                slide2.setPower(slide2Retraction);
+            } else {
+                slide2.setPower(0);
             }
         }
 
