@@ -25,5 +25,11 @@ public class Auto extends LinearOpMode {
     frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+    double denominator = Math.max(Math.abs(forward) + Math.abs(strafe) + Math.abs(turn), 1);
+    double frontLeftPower = (forward + strafe + turn) / denominator;
+    double backLeftPower = (forward - strafe + turn) / denominator;
+    double frontRightPower = (forward - strafe - turn) / denominator;
+    double backRightPower = (forward + strafe - turn) / denominator;
   }
 }
