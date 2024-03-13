@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.util.Range;
 
 @TeleOp
 public class Robot extends OpMode {
@@ -62,7 +63,7 @@ public class Robot extends OpMode {
         }
 
         if (gamepad1.right_bumper) {
-            forward = forward * 3;
+            forward = Range.clip(forward * 3,-1,1);
             strafe = strafe * 3;
             turn = turn * 3;
         }
