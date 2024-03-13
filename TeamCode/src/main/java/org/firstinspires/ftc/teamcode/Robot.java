@@ -20,8 +20,8 @@ public class Robot extends OpMode {
     public void init() {
 
         // one side has to be reversed; default is forward. If this makes it's direction inverted, switch the side
-        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        backRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         slide1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         turret.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
