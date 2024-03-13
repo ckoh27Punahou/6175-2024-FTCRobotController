@@ -17,6 +17,13 @@ public class Auto extends LinearOpMode {
 
   public void runOpMode() {
 
-    //add all of the get commands to name the variables 
+    frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+    backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+    slide1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    turret.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
   }
 }
