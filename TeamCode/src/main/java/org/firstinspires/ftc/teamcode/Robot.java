@@ -71,22 +71,38 @@ public class Robot extends OpMode {
         //Turret
 
         double turretRotation = gamepad2.right_stick_x;
-
-        turret.setPower(turretRotation);
+        if (gamepad2.left_bumper) {
+            turret.setPower(turretRotation/3);
+        } else {
+            turret.setPower(turretRotation);
+        }
 
         //Slides
 
         double slideExtension = gamepad2.right_trigger;
         double slideRetraction = gamepad2.left_trigger;
-
-        if (slideExtension>0.05) {
-            slide1.setDirection(DcMotorSimple.Direction.FORWARD);
-            slide1.setPower(slideExtension);
-        } else if (slideRetraction>0.05) {
-            slide1.setDirection(DcMotorSimple.Direction.REVERSE);
-            slide1.setPower(slideRetraction);
+        if (gamepad2.right_bumper) {
+            slideRetraction = slideRetraction/3;
+            slideExtension = slideExtension/3;
+            if (slideExtension > 0.05) {
+                slide1.setDirection(DcMotorSimple.Direction.FORWARD);
+                slide1.setPower(slideExtension);
+            } else if (slideRetraction > 0.05) {
+                slide1.setDirection(DcMotorSimple.Direction.REVERSE);
+                slide1.setPower(slideRetraction);
+            } else {
+                slide1.setPower(0);
+            }
         } else {
-            slide1.setPower(0);
+            if (slideExtension>0.05) {
+                slide1.setDirection(DcMotorSimple.Direction.FORWARD);
+                slide1.setPower(slideExtension);
+            } else if (slideRetraction>0.05) {
+                slide1.setDirection(DcMotorSimple.Direction.REVERSE);
+                slide1.setPower(slideRetraction);
+            } else {
+                slide1.setPower(0);
+            }
         }
     }
 }
