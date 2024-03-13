@@ -7,7 +7,13 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 @Autonomous(name = "Auto")
 public class Auto extends LinearOpMode {
 
-  //add all of the DcMotor imports from the normal OpMode, w/ the reversed directions and names
+//DcMotor frontRight, backRight, frontLeft, backLeft;
+  DcMotor frontLeft = hardwareMap.dcMotor.get("frontLeft");
+  DcMotor backLeft = hardwareMap.dcMotor.get("backLeft");
+  DcMotor frontRight = hardwareMap.dcMotor.get("frontRight");
+  DcMotor backRight = hardwareMap.dcMotor.get("backRight");
+  DcMotor turret = hardwareMap.dcMotor.get("turret");
+  DcMotor slide1 = hardwareMap.dcMotor.get("slide1");
 
   public void runOpMode() {
 
