@@ -1,1 +1,16 @@
+package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+
+@Autonomous(name = "Auto")
+public class Auto extends LinearOpMode {
+
+  //add all of the DcMotor imports from the normal OpMode, w/ the reversed directions and names
+
+  public void runOpMode() {
+
+    //add all of the get commands to name the variables 
+  }
+}
