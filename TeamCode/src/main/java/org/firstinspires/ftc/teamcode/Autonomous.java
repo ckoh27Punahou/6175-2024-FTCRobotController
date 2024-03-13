@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous
+@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="AutonomousSkeleton")
 public class Autonomous extends OpMode {
 
     DcMotor frontLeft = hardwareMap.dcMotor.get("frontLeft");
