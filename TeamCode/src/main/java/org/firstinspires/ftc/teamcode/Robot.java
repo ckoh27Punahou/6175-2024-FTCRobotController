@@ -82,14 +82,12 @@ public class Robot extends OpMode {
         double slideExtension = gamepad2.right_trigger;
         double slideRetraction = gamepad2.left_trigger;
         if (gamepad2.right_bumper) {
-            slideRetraction = slideRetraction/3;
-            slideExtension = slideExtension/3;
             if (slideExtension > 0.05) {
                 slide1.setDirection(DcMotorSimple.Direction.FORWARD);
-                slide1.setPower(slideExtension);
+                slide1.setPower(slideExtension/3);
             } else if (slideRetraction > 0.05) {
                 slide1.setDirection(DcMotorSimple.Direction.REVERSE);
-                slide1.setPower(slideRetraction);
+                slide1.setPower(slideRetraction/3);
             } else {
                 slide1.setPower(0);
             }
