@@ -18,8 +18,7 @@ public class Robot extends OpMode {
 
     DcMotor slide1 = hardwareMap.dcMotor.get("slide1");
     CRServo slide2 = hardwareMap.crservo.get("slide2");
-    CRServo turret = hardwareMap.crservo.get("turret");
-
+    DcMotor turret = hardwareMap.dcMotor.get("turret");
 
     @Override
     public void init() {
@@ -32,6 +31,7 @@ public class Robot extends OpMode {
         frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        turret.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -60,12 +60,6 @@ public class Robot extends OpMode {
             forward = forward/3;
             strafe = strafe/3;
             turn = turn/3;
-        }
-
-        if (gamepad1.right_bumper) {
-            forward = Range.clip(forward * 3,-1,1);
-            strafe = strafe * 3;
-            turn = turn * 3;
         }
 
         frontLeft.setPower(frontLeftPower);
