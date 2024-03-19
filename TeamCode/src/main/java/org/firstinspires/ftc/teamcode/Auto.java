@@ -41,5 +41,7 @@ public class Auto extends LinearOpMode {
     double backLeftPower = (forward - strafe + turn) / denominator;
     double frontRightPower = (forward - strafe - turn) / denominator;
     double backRightPower = (forward + strafe - turn) / denominator;
+
+
   }
 }
