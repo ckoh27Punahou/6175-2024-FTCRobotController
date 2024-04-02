@@ -10,6 +10,8 @@ import org.firstinspires.ftc.robotcore.external.JavaUtil;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+/* Might have to be named like:
+/ @com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Auto") */
 @Autonomous(name = "Auto")
 public class Auto extends LinearOpMode {
 
